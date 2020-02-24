@@ -3,11 +3,10 @@
 		<select class="uk-width-1-1" v-model="model.selected">
 			<option value />
 			<option
-				v-bind:value="item._uid"
-				v-bind:key="item._uid"
+				v-bind:value="deepFind(item, options.reference)"
+				v-bind:key="deepFind(item, options.reference)"
 				v-for="item in components"
-				>{{ `${deepFind(item, options.name) || '-'} (${item._uid})` }}</option
-			>
+			>{{ `${deepFind(item, options.name) || '-'} (${item._uid})` }}</option>
 		</select>
 	</div>
 </template>
@@ -26,6 +25,10 @@ export default {
 		getDefaults() {
 			return {
 				plugin: PLUGIN_NAME,
+				version: 'published',
+				component: '',
+				reference: '_uid',
+				name: '',
 				selected: ''
 			};
 		},
@@ -36,7 +39,11 @@ export default {
 
 			// constraints checks are left to the browser
 			const computed = {
-				...defaults
+				...defaults,
+				version: this.options.version,
+				component: this.options.component,
+				reference: this.options.reference,
+				name: this.options.name
 			};
 
 			// return the computed
@@ -66,8 +73,8 @@ export default {
 			const components = this.deepFind(story.content, this.options.path).filter(
 				component => {
 					return this.options.component
-						.split(',')
-						.includes(component.component);
+						? this.options.component.split(',').includes(component.component)
+						: true;
 				}
 			);
 			// assign the components

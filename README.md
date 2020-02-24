@@ -22,13 +22,33 @@ Sets the path to the components to filter starting from the story content in dot
 
 Type: `string`
 
-Sets the name of the components to filter as a comma separated list (e.g. `list_item,magic_list_item`).
+Sets the name of the components to filter as a comma separated list (e.g. `list_item,magic_list_item`). If empty, no filter is applied.
+
+#### reference
+
+Type: `string`
+
+Sets the path to the field to pick up from the component reference in dot notation (e.g. `_uid`).
 
 #### name
 
 Type: `string`
 
 Sets the path to the components' name to use as display string in dot notation (e.g. `body.my_list`).
+
+## Output
+
+Example output from the plugin:
+
+```JSON
+{
+	"version": "published",
+	"component": "",
+	"reference": "_uid",
+	"name": "",
+	"selected": "<COMPONENT REFERENCE>"
+}
+```
 
 ## Project setup
 
