@@ -18,7 +18,7 @@ Type: `string`
 
 Sets the path to the components to filter starting from the story content in dot notation (e.g. `body.my_list`).
 
-#### component
+#### type
 
 Type: `string`
 

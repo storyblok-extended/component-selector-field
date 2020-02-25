@@ -26,7 +26,7 @@ export default {
 			return {
 				plugin: PLUGIN_NAME,
 				version: 'published',
-				component: '',
+				type: '',
 				reference: '_uid',
 				name: '',
 				selected: ''
@@ -41,7 +41,7 @@ export default {
 			const computed = {
 				...defaults,
 				version: this.options.version,
-				component: this.options.component,
+				type: this.options.type,
 				reference: this.options.reference,
 				name: this.options.name
 			};
@@ -72,8 +72,8 @@ export default {
 			// filter the story for the given components
 			const components = this.deepFind(story.content, this.options.path).filter(
 				component => {
-					return this.options.component
-						? this.options.component.split(',').includes(component.component)
+					return this.options.type
+						? this.options.type.split(',').includes(component.component)
 						: true;
 				}
 			);
