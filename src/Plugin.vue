@@ -70,13 +70,13 @@ export default {
 			// get the story
 			const { story } = res.data;
 			// filter the story for the given components
-			const components = this.deepFind(story.content, this.options.path).filter(
-				component => {
+			const components = this.deepFind(story.content, this.options.path)
+				.filter(component => {
 					return this.options.type
 						? this.options.type.split(',').includes(component.component)
 						: true;
-				}
-			);
+				})
+				.filter(component => this.deepFind(component, this.options.reference));
 			// assign the components
 			this.components = components;
 			// console.log(story, components);
